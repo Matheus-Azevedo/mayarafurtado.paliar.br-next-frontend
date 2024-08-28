@@ -1,4 +1,3 @@
-import Image from "next/image";
 import "./app.css";
 import Home from "./sections/home/home";
 import Clinic from "./sections/clinic/clinic";
