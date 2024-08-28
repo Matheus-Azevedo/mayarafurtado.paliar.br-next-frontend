@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: workshop-nextjs
+    volumes:
+      - .:/app
+      - /app/node_modules # Evita sobrescrever os módulos no container
+    restart: unless-stopped # Reinicia o container caso ele pare de rodar
+    ports:
+      - "3000:3000"
