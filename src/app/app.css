@@ -1,0 +1,27 @@
+.logo {
+  background-image: url("../../public/logo2.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  opacity: 0.1;
+}
+
+.logo-right {
+  background-position: bottom right;
+}
+
+.logo-center {
+  background-position: center center;
+}
+
+.logo-left {
+  background-position: bottom left;
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+    background-position: center center;
+  }
+}
