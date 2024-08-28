@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./landing.css";
 
 function Landing() {
@@ -75,10 +76,18 @@ function Landing() {
           </a>
         </div>
         <nav>
-          <button>Home</button>
-          <button>Biografia</button>
-          <button>Clínica</button>
-          <button>Depoimentos</button>
+          <Link href="#home" scroll={true}>
+            <button>Home</button>
+          </Link>
+          <Link href="#biography" scroll={true}>
+            <button>Biografia</button>
+          </Link>
+          <Link href="#clinic" scroll={true}>
+            <button>Clínica</button>
+          </Link>
+          <Link href="#depositions" scroll={true}>
+            <button>Depoimentos</button>
+          </Link>
         </nav>
       </div>
     </main>

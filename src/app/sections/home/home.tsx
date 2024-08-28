@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./home.css";
 
 function Home() {
@@ -13,10 +14,18 @@ function Home() {
           </p>
         </div>
         <nav>
-          <button>Biografia</button>
-          <button>Clínica</button>
-          <button>Depoimentos</button>
-          <button>Contato</button>
+          <Link href="#biography" scroll={true}>
+            <button>Biografia</button>
+          </Link>
+          <Link href="#clinic" scroll={true}>
+            <button>Clínica</button>
+          </Link>
+          <Link href="#depositions" scroll={true}>
+            <button>Depoimentos</button>
+          </Link>
+          <Link href="#contacts" scroll={true}>
+            <button>Contato</button>
+          </Link>
         </nav>
       </div>
       <div className="home-container-3">
@@ -30,7 +39,7 @@ function Home() {
             <strong className="brown-paliar">Gerontóloga,</strong>
             <br />
             com foco em
-            <strong className="brown-paliar">reabilitação funcional</strong>
+            <strong className="brown-paliar"> reabilitação funcional</strong>
             <br />e <strong className="brown-paliar">doenças crônicas.</strong>
           </h1>
           <p>Proporcionando cuidado integral ao idoso com dedicação e amor.</p>

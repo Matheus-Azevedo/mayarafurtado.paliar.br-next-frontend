@@ -19,14 +19,13 @@
 }
 
 .home-container-2 p {
-  margin-top: -1.7rem;
   font-size: 1.5rem;
   color: var(--brown-paliar);
   font-weight: 500;
 }
 
 .home-container-2 nav {
-  margin-top: -4rem;
+  align-self: flex-start;
   font-size: 3rem;
   display: flex;
   color: var(--green-paliar);
@@ -46,14 +45,13 @@
 }
 
 .home-container-3 h1 {
-  font-size: 4.5rem;
+  font-size: 4rem;
   text-align: justify;
   color: var(--green-paliar);
   font-weight: 900;
 }
 
 .home-container-3 p {
-  margin-top: -2rem;
   font-size: 2rem; /* Font size at default */
   color: var(--brown-paliar);
   font-weight: 700;
