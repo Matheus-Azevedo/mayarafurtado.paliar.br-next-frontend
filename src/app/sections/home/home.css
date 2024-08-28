@@ -1,0 +1,125 @@
+.home-container-1 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 3% 5%;
+  gap: 10rem;
+  height: 100vh;
+}
+
+.home-container-2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-container-2 h1 {
+  font-size: 3rem;
+  color: var(--green-paliar);
+  font-weight: 900;
+}
+
+.home-container-2 p {
+  margin-top: -1.7rem;
+  font-size: 1.5rem;
+  color: var(--brown-paliar);
+  font-weight: 500;
+}
+
+.home-container-2 nav {
+  margin-top: -4rem;
+  font-size: 3rem;
+  display: flex;
+  color: var(--green-paliar);
+  font-weight: 700;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.home-container-2 nav button:hover {
+  color: var(--brown-paliar);
+}
+
+.home-container-3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-container-3 h1 {
+  font-size: 4.5rem;
+  text-align: justify;
+  color: var(--green-paliar);
+  font-weight: 900;
+}
+
+.home-container-3 p {
+  margin-top: -2rem;
+  font-size: 2rem; /* Font size at default */
+  color: var(--brown-paliar);
+  font-weight: 700;
+}
+
+.home-photo {
+  background-image: url("../../../../public/home-photo2-edit.png");
+  width: 500px;
+  height: 550px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 1rem;
+  border: 0.1rem solid var(--green-paliar);
+}
+
+@media screen and (max-width: 768px) {
+  .home-container-1 {
+    text-align: center;
+    padding: 3% 2%;
+    gap: 2.5rem;
+  }
+
+  .home-container-2 {
+    justify-content: center;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .home-container-2 h1 {
+    font-size: 2rem;
+  }
+
+  .home-container-2 p {
+    font-size: 1rem;
+  }
+
+  .home-container-2 nav {
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  .home-container-3 {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .home-container-3 .home-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .home-container-3 h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 2rem;
+  }
+
+  .home-container-3 p {
+    font-size: 1rem;
+  }
+
+  .home-photo {
+    width: 200px;
+    height: 250px;
+  }
+}
