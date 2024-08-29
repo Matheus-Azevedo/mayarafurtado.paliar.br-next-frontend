@@ -28,7 +28,7 @@
 .clinic-container-2 ul {
   display: flex;
   flex-wrap: wrap;
-  height: 90%;
+  height: 100vh;
   flex-direction: column;
   gap: 1rem;
 }
