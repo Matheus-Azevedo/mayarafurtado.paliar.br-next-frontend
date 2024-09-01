@@ -1,0 +1,74 @@
+/* Estilos para o modal */
+.login-modal {
+  border: none;
+  border-radius: 30px;
+  padding: 20px;
+  width: 500px;
+  max-width: 90%;
+  background-color: var(--green-light-paliar);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajustado para um sombreamento mais visível */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* Garante que o modal esteja acima de outros elementos */
+  outline: none; /* Remove o contorno padrão do elemento dialog */
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Estilos para a imagem */
+.login-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem; /* Adiciona espaço abaixo da imagem */
+}
+
+/* Estilos para os inputs e botões */
+.login-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--green-paliar);
+  font-size: 16px;
+  outline: none;
+  border-radius: 30px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--green-paliar);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.login-button:hover {
+  background-color: var(--brown-paliar);
+}
+
+/* Estilos adicionais para o botão de fechar */
+.close-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--green-paliar);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.close-button:hover {
+  background-color: var(--brown-paliar);
+}
