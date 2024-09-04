@@ -38,37 +38,21 @@
   border-radius: 30px;
 }
 
-.login-button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 30px;
-  background-color: var(--green-paliar);
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.2s;
-}
-
-.login-button:hover {
-  background-color: var(--brown-paliar);
-}
-
-/* Estilos adicionais para o botão de fechar */
+.login-button,
 .close-button {
   width: 100%;
   padding: 10px;
   border: none;
   border-radius: 30px;
   background-color: var(--green-paliar);
-  color: #fff;
+  color: var(--green-light-paliar);
   font-size: 16px;
   cursor: pointer;
   margin-top: 10px;
   transition: background-color 0.2s;
 }
 
+.login-button:hover,
 .close-button:hover {
   background-color: var(--brown-paliar);
 }

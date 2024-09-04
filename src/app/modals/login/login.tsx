@@ -24,15 +24,12 @@ function Login({ closeLoginModal }: LoginProps) {
   }
 
   async function handleLogin() {
-    const data = await sendLoginRequest(email, password);
-    if (data) {
-      console.log(data);
-      setOpenLobbyModal(true);
-    }
-    // console.log(email, password);
-    // console.log("Login successful");
-    // setOpenLobbyModal(true);
-    // closeLoginModal();
+    // const data = await sendLoginRequest(email, password);
+    // if (data) {
+    //   console.log(data);
+    //   setOpenLobbyModal(true);
+    // }
+    setOpenLobbyModal(true);
   }
 
   function closeLobbyModal() {
