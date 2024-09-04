@@ -1,0 +1,34 @@
+.lobby-deposition-container {
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+  width: 95%;
+}
+
+.lobby-deposition-table {
+  width: 100%;
+
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.lobby-deposition-header {
+  color: var(--green-light-paliar);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.lobby-deposition-content {
+  border-top: 1px solid var(--green-light-paliar);
+  color: var(--green-light-paliar);
+}
+
+.lobby-deposition-content-image {
+  width: 50px;
+  height: 50px;
+}
+
+.lobby-deposition-content td {
+  padding: 10px;
+  border-bottom: 1px solid var(--green-light-paliar);
+}
