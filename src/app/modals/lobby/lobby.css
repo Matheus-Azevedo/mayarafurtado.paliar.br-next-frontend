@@ -2,9 +2,8 @@
   border: none;
   border-radius: 30px;
   padding: 20px;
-  width: 80vh;
-  height: 80vh;
-  max-width: 90%;
+  width: 95%;
+  height: 90%;
   background-color: var(--green-light-paliar);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajustado para um sombreamento mais visível */
   position: absolute;
@@ -14,7 +13,64 @@
   z-index: 1000; /* Garante que o modal esteja acima de outros elementos */
   outline: none; /* Remove o contorno padrão do elemento dialog */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   gap: 1rem;
+}
+
+.lobby-container-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 15%;
+}
+
+.lobby-container-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background-color: var(--green-paliar);
+  width: 90%;
+  height: 100%;
+}
+
+.lobby-button,
+.close-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--green-paliar);
+  color: var(--green-light-paliar);
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.lobby-button:hover,
+.close-button:hover {
+  background-color: var(--brown-paliar);
+}
+
+.lobby-input-search-container {
+  display: flex;
+  align-self: flex-start;
+  margin: 10px;
+}
+
+.lobby-input-search {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--green-light-paliar);
+  color: var(--green-paliar);
+  font-size: 16px;
+  margin-top: 10px;
+  margin-left: 25px;
+  outline: none;
 }
