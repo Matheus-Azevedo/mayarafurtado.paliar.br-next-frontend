@@ -9,10 +9,13 @@ export async function sendLoginRequest(
   password: string
 ): Promise<LoginResponse | undefined> {
   try {
-    const { data } = await axios.post("http://localhost:3000/login", {
-      email,
-      password,
-    });
+    const { data } = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL_BASE}/login`,
+      {
+        email,
+        password,
+      }
+    );
     return data;
   } catch (error) {
     console.error(error);

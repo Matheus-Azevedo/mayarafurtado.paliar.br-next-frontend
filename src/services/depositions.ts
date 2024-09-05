@@ -1,18 +1,36 @@
 import axios from "axios";
 
-interface DeleteDepositionsResponse {
-  message: string;
-  status: number;
-}
-
 export async function deleteDeposition(
   id: string
-): Promise<DeleteDepositionsResponse | undefined> {
+): Promise<number | undefined> {
   try {
-    const { data } = await axios.post(
-      `http://localhost:3000/depositions/${id}`
+    const { status } = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL_BASE}/depositions/${id}`
     );
-    return data;
+    return status;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export interface Deposition {
+  name: string;
+  phone: string;
+  content: string;
+  file: any;
+}
+
+export async function createDeposition(
+  deposition: Deposition
+): Promise<number | undefined> {
+  try {
+    const { status } = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL_BASE}/depositions`,
+      {
+        ...deposition,
+      }
+    );
+    return status;
   } catch (error) {
     console.error(error);
   }
