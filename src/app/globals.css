@@ -27,6 +27,10 @@ body {
   --brown-paliar: #766b6a;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 .green-paliar {
   color: var(--green-paliar);
 }

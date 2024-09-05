@@ -1,6 +1,7 @@
 .depositions-container-1 {
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-between;
   position: relative;
   padding: 3% 5%;
@@ -35,4 +36,17 @@
   font-size: 2rem;
   color: var(--brown-paliar);
   text-align: justify;
+}
+
+.depositions-button {
+  width: 20%;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--green-paliar);
+  color: var(--green-light-paliar);
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
 }
