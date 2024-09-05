@@ -22,13 +22,13 @@ function Lobby({ closeLobbyModal }: LobbyProps) {
         <section className="lobby-container-1">
           <div>
             <button
-              className="close-button"
+              className="lobby-button"
               onClick={() => setShowComponent(0)}
             >
-              Depositions
+              Depoimentos
             </button>
             <button
-              className="close-button"
+              className="lobby-button"
               onClick={() => setShowComponent(1)}
             >
               Landing

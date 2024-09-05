@@ -54,13 +54,13 @@ function Login({ closeLoginModal }: LoginProps) {
           type="password"
           value={password}
           onChange={handleChangePassword}
-          placeholder="Password"
+          placeholder="Senha"
         />
         <button className="login-button" onClick={handleLogin}>
           Login
         </button>
         <button className="close-button" onClick={closeLoginModal}>
-          Close
+          Fechar
         </button>
       </dialog>
       {openLobbyModal && <Lobby closeLobbyModal={closeLobbyModal} />}

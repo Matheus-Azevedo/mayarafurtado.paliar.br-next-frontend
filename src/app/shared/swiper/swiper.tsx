@@ -12,7 +12,8 @@ import Image from "next/image";
 interface CarouselProps {
   histories: {
     photo: string;
-    title: string;
+    name?: string;
+    title?: string;
     content: string;
   }[];
 }
@@ -57,7 +58,7 @@ function Carousel({ histories }: CarouselProps) {
                   height={550}
                 />
                 <article className="article-content">
-                  <h1>{history.title}</h1>
+                  <h1>{history.name}</h1>
                   <p>{history.content}</p>
                 </article>
               </div>

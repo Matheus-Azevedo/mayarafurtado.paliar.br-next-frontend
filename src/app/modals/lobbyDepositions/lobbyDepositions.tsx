@@ -13,7 +13,6 @@ interface DepositionContentProps {
 export interface Deposition {
   id?: string;
   photo: string;
-  title: string;
   name: string;
   tel: string;
   content: string;
@@ -23,7 +22,6 @@ function LobbyDepositions({ search }: DepositionContentProps) {
   const [depositions, setDepositions] = useState<Deposition[]>([
     {
       photo: "/Exemplo.jpg",
-      title: "Meu depoimento...",
       name: "Fulano",
       tel: "(83) 9 1234-5678",
       content:
@@ -31,7 +29,6 @@ function LobbyDepositions({ search }: DepositionContentProps) {
     },
     {
       photo: "/Exemplo.jpg",
-      title: "Meu depoimento...",
       name: "Cicrano",
       tel: "(83) 9 1234-5678",
       content:
@@ -39,7 +36,6 @@ function LobbyDepositions({ search }: DepositionContentProps) {
     },
     {
       photo: "/Exemplo.jpg",
-      title: "Meu depoimento...",
       name: "Beltrano",
       tel: "(83) 9 1234-5678",
       content:
@@ -57,9 +53,9 @@ function LobbyDepositions({ search }: DepositionContentProps) {
   async function hanndleDelete(id: string) {
     const result = confirm("Você tem certeza deseja apagar?");
     if (result) {
-      const response = await deleteDeposition(id);
-      if (response) {
-        alert(response.message);
+      const status = await deleteDeposition(id);
+      if (status === 200) {
+        alert("Depoimento apagado com sucesso.");
         setDepositions(
           depositions.filter((deposition) => deposition.id !== id)
         );
@@ -77,7 +73,6 @@ function LobbyDepositions({ search }: DepositionContentProps) {
             <tr>
               <th>#</th>
               <th>Foto</th>
-              <th>Título</th>
               <th>Nome</th>
               <th>TEL</th>
               <th>Depoimento</th>
@@ -104,7 +99,6 @@ function LobbyDepositions({ search }: DepositionContentProps) {
                       height={70}
                     />
                   </td>
-                  <td>{deposition.title}</td>
                   <td>{deposition.name}</td>
                   <td>{deposition.tel}</td>
                   <td>
