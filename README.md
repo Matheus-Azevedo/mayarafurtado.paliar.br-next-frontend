@@ -1,7 +1,3 @@
-Aqui está um README para o projeto com base na documentação fornecida:
-
----
-
 # Mayara Furtado - Sistema de Gerenciamento e Promoção Profissional
 
 ## Introdução
