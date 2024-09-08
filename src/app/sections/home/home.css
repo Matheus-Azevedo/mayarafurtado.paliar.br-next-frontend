@@ -42,19 +42,50 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 5rem;
 }
 
 .home-container-3 h1 {
-  font-size: 4rem;
+  font-size: 6rem;
   text-align: justify;
   color: var(--green-paliar);
   font-weight: 900;
+  /* width: 70%; */
+  text-align: center;
 }
 
 .home-container-3 p {
-  font-size: 2rem; /* Font size at default */
+  font-size: 2.5rem; /* Font size at default */
   color: var(--brown-paliar);
   font-weight: 700;
+  text-align: center;
+  /* width: 70%; */
+}
+
+.home-content-image {
+  display: flex;
+  align-self: center;
+}
+
+.home-content-button {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  height: 100px;
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--green-paliar);
+  color: var(--green-light-paliar);
+  font-weight: 700;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.home-content-button:hover {
+  background-color: var(--brown-paliar);
 }
 
 .home-photo {
@@ -66,6 +97,21 @@
   background-size: cover;
   border-radius: 1rem;
   border: 0.1rem solid var(--green-paliar);
+}
+
+.home-photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  gap: 1rem;
 }
 
 @media screen and (max-width: 768px) {

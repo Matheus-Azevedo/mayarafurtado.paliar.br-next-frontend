@@ -4,6 +4,7 @@ import Link from "next/link";
 import "./home.css";
 import Login from "../../modals/login/login";
 import { useState } from "react";
+import { WhatsappLogo } from "@phosphor-icons/react";
 
 function Home() {
   const [openLoginModal, setLoginModal] = useState(false);
@@ -42,23 +43,28 @@ function Home() {
           </nav>
         </div>
         <div className="home-container-3">
-          <div className="home-photo"></div>
+          <div className="home-photo-container">
+            <div className="home-photo" />
+          </div>
           <div className="home-content">
             <h1>
-              Me chamo
-              <strong className="brown-paliar"> Mayara Furtado,</strong>
-              <br />
-              Fisioterapeuta{" "}
-              <strong className="brown-paliar">Gerontóloga,</strong>
-              <br />
-              com foco em
-              <strong className="brown-paliar"> reabilitação funcional</strong>
-              <br />e{" "}
-              <strong className="brown-paliar">doenças crônicas.</strong>
+              Alcance uma vida <strong className="brown-paliar">plena</strong> e{" "}
+              <strong className="brown-paliar">funcional</strong>
             </h1>
             <p>
-              Proporcionando cuidado integral ao idoso com dedicação e amor.
+              Fisioterapeuta especializada em idosos com doença crônica
+              proporcionando cuidado integral, <br />
+              em
+              <strong className="green-paliar"> consultório </strong>e
+              <strong className="green-paliar"> domicilio</strong>.
             </p>
+            <Link
+              className="home-content-button"
+              href="https://api.whatsapp.com/send?phone=5583991142751&amp;text=Olá, gostaria de agendar um consulta."
+            >
+              <WhatsappLogo className="home-content-image" size={42} />
+              <button>AGENDE SUA CONSULTA!</button>
+            </Link>
           </div>
         </div>
       </main>
