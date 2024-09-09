@@ -4,6 +4,8 @@ import { useState } from "react";
 import "./depositions.css";
 import Carousel from "@/app/shared/swiper/swiper";
 import CreateDeposition from "@/app/modals/createDeposition/createDeposition";
+import Link from "next/link";
+import LinkWhatsApp from "@/app/shared/linkWhatsapp/linkWhatsapp";
 
 function Depositions() {
   const [history, setHistory] = useState([
@@ -43,6 +45,9 @@ function Depositions() {
         >
           Escrever Depoimento
         </button>
+        <div className="depositions-container-2">
+          <LinkWhatsApp />
+        </div>
       </main>
       {openCreateDepositionModal && (
         <CreateDeposition closeModal={closeCreateDepositionModal} />

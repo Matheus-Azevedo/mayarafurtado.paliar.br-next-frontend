@@ -3,6 +3,7 @@
 import { useState } from "react";
 import "./biography.css";
 import Carousel from "@/app/shared/swiper/swiper";
+import LinkWhatsApp from "@/app/shared/linkWhatsapp/linkWhatsapp";
 
 function Biography() {
   const [history, setHistory] = useState([
@@ -29,6 +30,9 @@ function Biography() {
   return (
     <main className="biography-container-1">
       <Carousel histories={history} />
+      <div className="biography-container-2">
+        <LinkWhatsApp />
+      </div>
     </main>
   );
 }
