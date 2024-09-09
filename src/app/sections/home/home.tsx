@@ -56,7 +56,7 @@ function Home() {
               proporcionando cuidado integral, <br />
               em
               <strong className="green-paliar"> consultório </strong>e
-              <strong className="green-paliar"> domicilio</strong>.
+              <strong className="green-paliar"> domicílio</strong>.
             </p>
             <Link
               className="home-content-button"
