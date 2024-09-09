@@ -38,7 +38,7 @@ function Contacts() {
         </form>
       </div>
       <div className="contacts-container-3">
-        <div>
+        <div className="contacts-social-media-container">
           <a
             href="https://instagram.com/clinicadoidosoo?igshid=MXAzcmprazV4ZGxwdw=="
             target="_blank"
@@ -71,11 +71,11 @@ function Contacts() {
           </a>
           <div className="contacts-address-container">
             <p>
-              <strong>Endereço:</strong>Av. Mato Grosso, 183 - Estados, João
-              Pessoa <br /> PB, 58030-080
+              <strong>Endereço: </strong>Av. Mato Grosso, 183 - Estados, João
+              Pessoa PB, 58030-080
             </p>
             <p>
-              <strong>Telefone:</strong>(83) 2107-2222 / (83) 2107-2226
+              <strong>Telefone: </strong>(83) 2107-2222 / (83) 2107-2226
             </p>
           </div>
         </div>

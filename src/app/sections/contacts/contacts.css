@@ -64,15 +64,16 @@
   width: 100%;
 }
 
-.contacts-container-3 div {
+.contacts-social-media-container {
   display: flex;
   gap: 1rem;
 }
 
-.contacts-container-3 div div p {
+.contacts-address-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 0.5rem;
   color: var(--green-paliar);
 }
 
