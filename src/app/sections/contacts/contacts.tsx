@@ -1,44 +1,39 @@
 import Link from "next/link";
-import "./landing.css";
+import "./contacts.css";
 
-function Landing() {
+function Contacts() {
   return (
     <main className="contacts-container-1">
       <div className="contacts-container-2">
-        <p className="green-paliar contacts-container-paragraphe">
-          Alguma pergunta? <br />
-          <strong className="brown-paliar">
-            Não deixe de <br />
-            enviar uma <br />
-            mensagem.
-          </strong>
-        </p>
+        <div className="clinic-place" />
+
         <form className="h5 contacts-container-forms" method="post">
-          <label htmlFor="get-name">
-            <span>Nome:</span>
-            <input type="text" name="name" id="get-name" />
-          </label>
-          <label htmlFor="get-age">
-            <span>Idade:</span>
-            <input type="number" name="age" id="get-age" />
-          </label>
-          <label htmlFor="get-email">
-            <span>Email:</span>
-            <input type="email" name="email" id="get-email" />
-          </label>
-          <label htmlFor="get-city">
-            <span>Cidade:</span>
-            <input type="text" name="city" id="get-city" />
-          </label>
-          <label htmlFor="get-message" className="message-span">
-            <span>Mensagem:</span>
-            <textarea
-              name="message"
-              id="get-message"
-              cols={30}
-              rows={5}
-            ></textarea>
-          </label>
+          <input
+            className="create-deposition-input"
+            type="text"
+            placeholder="Nome"
+            name="name"
+            // value={name}
+            maxLength={25}
+            // onChange={handleNameChange}
+          />
+          <input
+            className="create-deposition-input"
+            type="text"
+            placeholder="Telefone"
+            name="phone"
+            // value={phone}
+            maxLength={15}
+            // onChange={handlePhoneChange}
+          />
+          <textarea
+            className="create-deposition-textarea"
+            placeholder="Conteúdo"
+            name="content"
+            // value={content}
+            maxLength={905}
+            // onChange={handleContentChange}
+          />
           <button type="submit">Enviar</button>
         </form>
       </div>
@@ -74,6 +69,15 @@ function Landing() {
               <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
             </svg>
           </a>
+          <div className="contacts-address-container">
+            <p>
+              <strong>Endereço:</strong>Av. Mato Grosso, 183 - Estados, João
+              Pessoa <br /> PB, 58030-080
+            </p>
+            <p>
+              <strong>Telefone:</strong>(83) 2107-2222 / (83) 2107-2226
+            </p>
+          </div>
         </div>
         <nav>
           <Link href="#home" scroll={true}>
@@ -83,7 +87,7 @@ function Landing() {
             <button>Biografia</button>
           </Link>
           <Link href="#clinic" scroll={true}>
-            <button>Clínica</button>
+            <button>Serviços</button>
           </Link>
           <Link href="#depositions" scroll={true}>
             <button>Depoimentos</button>
@@ -94,4 +98,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default Contacts;

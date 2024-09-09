@@ -1,9 +1,9 @@
 import "./app.css";
 import Home from "./sections/home/home";
 import Clinic from "./sections/clinic/clinic";
-import Landing from "./sections/landing/landing";
 import Biography from "./sections/biography/biography";
 import Depositions from "./sections/depositions/depositions";
+import Contacts from "./sections/contacts/contacts";
 
 export default function App() {
   return (
@@ -41,7 +41,7 @@ export default function App() {
         className="bg-gradient-to-r from-greenLight-paliar to-white h-screen"
       >
         <div className="logo logo-left" />
-        <Landing />
+        <Contacts />
       </section>
     </main>
   );
