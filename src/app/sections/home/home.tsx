@@ -32,7 +32,7 @@ function Home() {
               <button>Biografia</button>
             </Link>
             <Link href="#clinic" scroll={true}>
-              <button>Clínica</button>
+              <button>Serviços</button>
             </Link>
             <Link href="#depositions" scroll={true}>
               <button>Depoimentos</button>
