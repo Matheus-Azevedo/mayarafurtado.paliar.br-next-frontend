@@ -10,6 +10,5 @@
 .biography-container-2 {
   display: flex;
   position: relative;
-  /* bottom: 10rem; */
   align-self: flex-end;
 }
