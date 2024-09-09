@@ -87,7 +87,7 @@ function CreateDeposition({ closeModal }: CreateDepositionProps) {
               placeholder="Nome"
               name="name"
               value={name}
-              maxLength={25}
+              maxLength={20}
               onChange={handleNameChange}
             />
             <input
@@ -104,7 +104,7 @@ function CreateDeposition({ closeModal }: CreateDepositionProps) {
               placeholder="Conteúdo"
               name="content"
               value={content}
-              maxLength={2500}
+              maxLength={905}
               onChange={handleContentChange}
             />
             <ReCAPTCHA
