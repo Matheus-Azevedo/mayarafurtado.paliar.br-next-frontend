@@ -16,25 +16,19 @@
 }
 
 .contacts-container-forms {
-  padding-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 1rem;
   color: var(--green-paliar);
   width: 50%;
+  height: 45rem;
 }
 
 .contacts-container-forms label {
   display: flex;
   font-weight: 700;
   font-size: 2rem;
-}
-
-.contacts-container-forms label span {
-  min-width: 12rem;
-  display: flex;
-  align-items: center;
 }
 
 .contacts-container-forms input,
@@ -44,10 +38,6 @@
   border-radius: 30px;
   outline: none;
   width: 100%;
-}
-
-.contacts-container-forms textarea {
-  height: 27.5rem;
 }
 
 .contacts-container-forms input,
@@ -104,7 +94,7 @@
 .clinic-place {
   background-image: url("../../../../public/consultorio.jpeg");
   width: 864px;
-  height: 700px;
+  height: 45rem;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
