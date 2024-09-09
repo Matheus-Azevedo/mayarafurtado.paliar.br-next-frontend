@@ -85,33 +85,6 @@ function Clinic() {
           </li>
         </ul>
       </div>
-      <div className="clinic-container-5">
-        <div className="clinic-container-3">
-          <h1>Clínica</h1>
-          <ul>
-            <li className="clinic-place"></li>
-            <li className="clinic-oncovida"></li>
-            <p>
-              <strong className="brown-paliar"> Endereço:</strong> <br />
-              OncoVida Especialidades
-              <br />
-              Av. Mato Grosso, 183 - Estados,
-              <br />
-              João Pessoa - PB,
-              <br />
-              58030-080
-            </p>
-          </ul>
-        </div>
-        <div className="clinic-container-4">
-          <h1>Atendimento</h1>
-          <ul>
-            <li className="clinic-particular-logo"></li>
-            <li className="clinic-geap-logo"></li>
-            <li className="clinic-prevmed-logo"></li>
-          </ul>
-        </div>
-      </div>
     </main>
   );
 }

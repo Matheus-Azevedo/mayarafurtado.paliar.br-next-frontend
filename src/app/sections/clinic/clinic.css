@@ -9,20 +9,16 @@
 }
 
 .clinic-container-2 {
-  width: 50%;
-}
-
-.clinic-container-5 {
-  width: 50%;
   display: flex;
-  gap: 6rem;
-  justify-content: flex-end;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  text-align: center;
 }
 
-.clinic-container-2,
-.clinic-container-3,
-.clinic-container-4 {
-  text-align: center;
+.clinic-container-2 h1 {
+  font-size: 3rem;
+  font-weight: 900;
 }
 
 .clinic-container-2 ul {
@@ -42,59 +38,19 @@
   hyphens: auto;
 }
 
-.clinic-container-2 h1,
-.clinic-container-4 h1,
-.clinic-container-3 h1 {
-  font-size: 3rem;
-  font-weight: 900;
-}
-
-.clinic-container-3 ul,
-.clinic-container-4 ul {
+.two-columns {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+  list-style-type: none; /* Remove as bolinhas da lista */
+  padding: 0;
+  margin: 0;
 }
 
-.clinic-place {
-  background-image: url("../../../../public/consultorio.jpeg");
-}
-
-.clinic-oncovida {
-  background-image: url("../../../../public/oncovida.jpeg");
-}
-
-.clinic-place,
-.clinic-oncovida,
-.clinic-geap-logo,
-.clinic-prevmed-logo,
-.clinic-particular-logo {
-  width: 200px;
-  height: 100px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  border-radius: 1rem;
-  border: 0.1rem solid var(--green-paliar);
-}
-
-.clinic-place,
-.clinic-oncovida {
-  width: 400px;
-  height: 300px;
-}
-
-.clinic-geap-logo {
-  background-image: url("../../../../public/GEAP-Saúde.jpg");
-}
-
-.clinic-prevmed-logo {
-  background-image: url("../../../../public/prevmed.png");
-}
-
-.clinic-particular-logo {
-  background-image: url("../../../../public/Particular.png");
+.two-columns li {
+  flex: 1 1 calc(40% - 20px); /* Faz os itens ocuparem 50% da largura, menos o espaço entre eles */
+  box-sizing: border-box; /* Garante que o padding não afete a largura total */
+  margin-bottom: 20px; /* Espaço abaixo de cada item */
 }
 
 @media screen and (max-width: 768px) {
