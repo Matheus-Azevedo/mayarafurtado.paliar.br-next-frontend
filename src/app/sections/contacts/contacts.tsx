@@ -61,7 +61,9 @@ function Contacts() {
             sitekey={process.env.NEXT_PUBLIC_SITE_KEY || ""}
             onChange={handleCaptchaChange}
           />
-          <button type="submit">Enviar</button>
+          <button disabled={!isHuman} type="submit">
+            Enviar
+          </button>
         </form>
       </div>
       <div className="contacts-container-3">
