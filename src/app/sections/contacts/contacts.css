@@ -18,7 +18,7 @@
 .contacts-container-forms {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   gap: 1rem;
   color: var(--green-paliar);
   width: 50%;
@@ -42,7 +42,8 @@
 
 .contacts-container-forms input,
 .contacts-container-forms button {
-  height: 3.5rem;
+  /* height: 3rem; */
+  padding: 10px;
 }
 
 .contacts-container-forms button {
@@ -101,6 +102,32 @@
   background-size: cover;
   border-radius: 1rem;
   border: 0.1rem solid var(--green-paliar);
+}
+
+.contacts-recaptcha {
+  display: flex;
+  justify-content: center;
+}
+
+.contacts-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--green-paliar);
+  font-size: 16px;
+  outline: none;
+  border-radius: 30px;
+}
+
+.contacts-textarea {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--green-paliar);
+  font-size: 16px;
+  outline: none;
+  border-radius: 30px;
 }
 
 @media screen and (max-width: 768px) {

@@ -3,9 +3,11 @@
 import Link from "next/link";
 import "./contacts.css";
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function Contacts() {
   const [phone, setPhone] = useState("");
+  const [isHuman, setIsHuman] = useState(false);
 
   function handlePhoneChange(event: React.ChangeEvent<HTMLInputElement>) {
     const phone = event.target.value;
@@ -14,6 +16,12 @@ function Contacts() {
       .replace(/^(\d{2})(\d)/g, "($1) $2")
       .replace(/(\d)(\d{4})$/, "$1-$2");
     setPhone(formattedPhone);
+  }
+
+  function handleCaptchaChange(value: string | null) {
+    if (value) {
+      setIsHuman(true);
+    }
   }
 
   return (
@@ -27,14 +35,14 @@ function Contacts() {
           method="post"
         >
           <input
-            className="create-deposition-input"
+            className="contacts-input"
             type="text"
             placeholder="Nome"
             name="name"
             maxLength={40}
           />
           <input
-            className="create-deposition-input"
+            className="contacts-input"
             type="text"
             placeholder="Telefone"
             name="phone"
@@ -43,10 +51,15 @@ function Contacts() {
             onChange={handlePhoneChange}
           />
           <textarea
-            className="create-deposition-textarea"
+            className="contacts-textarea"
             placeholder="Mensagem"
             name="message"
             maxLength={905}
+          />
+          <ReCAPTCHA
+            className="contacts-recaptcha"
+            sitekey={process.env.NEXT_PUBLIC_SITE_KEY || ""}
+            onChange={handleCaptchaChange}
           />
           <button type="submit">Enviar</button>
         </form>
