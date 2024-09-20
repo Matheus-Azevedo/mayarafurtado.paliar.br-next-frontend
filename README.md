@@ -99,6 +99,7 @@ Promover a imagem profissional da fisioterapeuta Mayara Furtado, refletindo sua 
 
 - **Next.js**: Framework React para desenvolvimento de aplicações web.
 - **Vercel**: Plataforma para deploy de aplicações front-end.
+- **Formspree**: Serviço para processar os envios de formulários e encaminhar as mensagens diretamente para o seu e-mail.
 
 ### Back-end
 

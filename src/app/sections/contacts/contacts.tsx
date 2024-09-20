@@ -1,38 +1,52 @@
+"use client";
+
 import Link from "next/link";
 import "./contacts.css";
+import { useState } from "react";
 
 function Contacts() {
+  const [phone, setPhone] = useState("");
+
+  function handlePhoneChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const phone = event.target.value;
+    const formattedPhone = phone
+      .replace(/\D/g, "")
+      .replace(/^(\d{2})(\d)/g, "($1) $2")
+      .replace(/(\d)(\d{4})$/, "$1-$2");
+    setPhone(formattedPhone);
+  }
+
   return (
     <main className="contacts-container-1">
       <div className="contacts-container-2">
         <div className="clinic-place" />
 
-        <form className="h5 contacts-container-forms" method="post">
+        <form
+          action={process.env.NEXT_PUBLIC_SITE_KEY_FORMSPREE || ""}
+          className="h5 contacts-container-forms"
+          method="post"
+        >
           <input
             className="create-deposition-input"
             type="text"
             placeholder="Nome"
             name="name"
-            // value={name}
-            maxLength={25}
-            // onChange={handleNameChange}
+            maxLength={40}
           />
           <input
             className="create-deposition-input"
             type="text"
             placeholder="Telefone"
             name="phone"
-            // value={phone}
+            value={phone}
             maxLength={15}
-            // onChange={handlePhoneChange}
+            onChange={handlePhoneChange}
           />
           <textarea
             className="create-deposition-textarea"
-            placeholder="Conteúdo"
-            name="content"
-            // value={content}
+            placeholder="Mensagem"
+            name="message"
             maxLength={905}
-            // onChange={handleContentChange}
           />
           <button type="submit">Enviar</button>
         </form>
