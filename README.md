@@ -103,7 +103,7 @@ Promover a imagem profissional da fisioterapeuta Mayara Furtado, refletindo sua 
 
 ### Back-end
 
-- **Nest**: Framework Node.js baseado na biblioteca Expresss.js para desenvolvimento de APIs.
+- **Springboot**: Framework Java para desenvolvimento de APIs.
 - **Docker**: Contêineres para consistência no ambiente de desenvolvimento e deploy.
 - **Render**: Hospedagem de aplicações back-end com suporte para Docker.
 
