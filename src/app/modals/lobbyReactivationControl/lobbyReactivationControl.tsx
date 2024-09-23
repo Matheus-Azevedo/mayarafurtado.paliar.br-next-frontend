@@ -73,6 +73,7 @@ function LobbyReactivationControl({ search }: ReactivationControlProps) {
                   <td>
                     <Link
                       className="lobby-reactivation-control-whatsapp-container"
+                      target="_blank"
                       href={`https://api.whatsapp.com/send?phone=${patient.tel}&amp;text=Olá, gostaria de agendar um consulta?`}
                     >
                       <WhatsappLogo
