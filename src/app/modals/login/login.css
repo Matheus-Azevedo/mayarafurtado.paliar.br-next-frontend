@@ -30,6 +30,7 @@
 /* Estilos para os inputs e botões */
 .login-input {
   width: 100%;
+  height: 40px;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid var(--green-paliar);
@@ -41,6 +42,7 @@
 .login-button,
 .close-button {
   width: 100%;
+  height: 40px;
   padding: 10px;
   border: none;
   border-radius: 30px;
