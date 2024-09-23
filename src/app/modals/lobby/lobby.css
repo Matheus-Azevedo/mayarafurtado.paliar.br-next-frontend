@@ -38,8 +38,9 @@
 }
 
 .lobby-button,
-.close-button {
-  width: 100%;
+.lobby-close-button {
+  width: 250px;
+  height: 40px;
   padding: 10px;
   border: none;
   border-radius: 30px;
@@ -52,7 +53,7 @@
 }
 
 .lobby-button:hover,
-.close-button:hover {
+.lobby-close-button:hover {
   background-color: var(--brown-paliar);
 }
 
@@ -63,7 +64,8 @@
 }
 
 .lobby-input-search {
-  width: 100%;
+  width: 250px;
+  height: 40px;
   padding: 10px;
   border: none;
   border-radius: 30px;
@@ -73,4 +75,8 @@
   margin-top: 10px;
   margin-left: 25px;
   outline: none;
+}
+
+.lobby-input-search::placeholder {
+  color: var(--green-paliar);
 }

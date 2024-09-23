@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
 import LobbyDepositions from "../lobbyDepositions/lobbyDepositions";
-import LobbyLanding from "../lobbyLanding/lobbyLanding";
 import "./lobby.css";
+import LobbyReactivationControl from "../lobbyReactivationControl/lobbyReactivationControl";
+import LobbyPatientRegistration from "../lobbyPatientRegistration/lobbyPatientRegistration";
+import LobbyPatientScheduling from "../lobbyPatientScheduling/lobbyPatientScheduling";
 
 interface LobbyProps {
   closeLobbyModal: () => void;
@@ -25,16 +27,28 @@ function Lobby({ closeLobbyModal }: LobbyProps) {
               className="lobby-button"
               onClick={() => setShowComponent(0)}
             >
-              Depoimentos
+              Cadastro
             </button>
             <button
               className="lobby-button"
               onClick={() => setShowComponent(1)}
             >
-              Landing
+              Agendamento
+            </button>
+            <button
+              className="lobby-button"
+              onClick={() => setShowComponent(2)}
+            >
+              Controle de Reativação
+            </button>
+            <button
+              className="lobby-button"
+              onClick={() => setShowComponent(3)}
+            >
+              Depoimentos
             </button>
           </div>
-          <button className="close-button" onClick={closeLobbyModal}>
+          <button className="lobby-close-button" onClick={closeLobbyModal}>
             Logout
           </button>
         </section>
@@ -48,8 +62,10 @@ function Lobby({ closeLobbyModal }: LobbyProps) {
               placeholder="Search"
             />
           </div>
-          {showComponent === 0 && <LobbyDepositions search={search} />}
-          {showComponent === 1 && <LobbyLanding />}
+          {showComponent === 0 && <LobbyPatientRegistration search={search} />}
+          {showComponent === 1 && <LobbyPatientScheduling search={search} />}
+          {showComponent === 2 && <LobbyReactivationControl search={search} />}
+          {showComponent === 3 && <LobbyDepositions search={search} />}
         </section>
       </dialog>
     </>

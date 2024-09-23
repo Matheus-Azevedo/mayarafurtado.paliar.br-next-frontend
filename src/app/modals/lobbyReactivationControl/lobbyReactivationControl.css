@@ -1,0 +1,64 @@
+.lobby-reactivation-control-container-1 {
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+  width: 95%;
+}
+
+.lobby-reactivation-control-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 250px;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--green-light-paliar);
+  color: var(--green-paliar);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.lobby-reactivation-control-button-container {
+  display: flex;
+  align-self: flex-start;
+}
+
+.lobby-reactivation-control-container-2 {
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+  width: 95%;
+}
+
+.lobby-reactivation-control-table {
+  width: 100%;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.lobby-reactivation-control-header {
+  color: var(--green-light-paliar);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.lobby-reactivation-control-content {
+  border-top: 1px solid var(--green-light-paliar);
+  color: var(--green-light-paliar);
+}
+
+.lobby-reactivation-control-content td {
+  padding: 10px;
+  border-bottom: 1px solid var(--green-light-paliar);
+}
+
+.lobby-reactivation-control-whatsapp-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
