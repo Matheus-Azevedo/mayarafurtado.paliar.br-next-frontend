@@ -12,6 +12,12 @@
   justify-content: space-between;
 }
 
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
 .home-container-2 h1 {
   font-size: 3rem;
   color: var(--green-paliar);
