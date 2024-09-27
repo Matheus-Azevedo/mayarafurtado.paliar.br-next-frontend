@@ -10,7 +10,7 @@ export async function sendLoginRequest(
 ): Promise<LoginResponse | undefined> {
   try {
     const { data } = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL_BASE}/login`,
+      `${process.env.NEXT_PUBLIC_API_URL_BASE}/auth/login`,
       {
         email,
         password,
