@@ -40,6 +40,7 @@ function Contacts() {
             placeholder="Nome"
             name="name"
             maxLength={40}
+            required
           />
           <input
             className="contacts-input"
@@ -49,12 +50,14 @@ function Contacts() {
             value={phone}
             maxLength={15}
             onChange={handlePhoneChange}
+            required
           />
           <textarea
             className="contacts-textarea"
             placeholder="Mensagem"
             name="message"
             maxLength={905}
+            required
           />
           <ReCAPTCHA
             className="contacts-recaptcha"
