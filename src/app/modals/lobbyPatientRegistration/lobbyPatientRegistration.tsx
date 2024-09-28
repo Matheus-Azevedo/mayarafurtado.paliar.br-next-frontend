@@ -47,6 +47,7 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
     if (typeof response === "string") {
       setMessage(response);
       setShowMessage(true);
+      setIsLoading(false);
       return;
     }
     setIsLoading(false);
@@ -90,6 +91,12 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
 
   return (
     <>
+      <button
+        onClick={handleRefresh}
+        className="lobby-patient-registration-refresh-btn"
+      >
+        <ArrowsClockwise size={32} />
+      </button>
       <section className="lobby-patient-registration-container-1">
         <section className="lobby-patient-registration-container-2">
           <form onSubmit={handleSubmit}>
@@ -155,12 +162,6 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
           </form>
         </section>
         <section className="lobby-patient-registration-container-3">
-          <button
-            onClick={handleRefresh}
-            className="lobby-patient-registration-refresh-btn"
-          >
-            <ArrowsClockwise size={32} />
-          </button>
           <table>
             <thead>
               <tr>

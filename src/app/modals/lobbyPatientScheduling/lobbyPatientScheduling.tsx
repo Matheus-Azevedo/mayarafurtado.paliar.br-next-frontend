@@ -2,7 +2,12 @@
 
 import "./lobbyPatientScheduling.css";
 import { useState } from "react";
-import { CheckCircle, Clock, Trash } from "@phosphor-icons/react";
+import {
+  ArrowsClockwise,
+  CheckCircle,
+  Clock,
+  Trash,
+} from "@phosphor-icons/react";
 import LobbyPatientSchedule from "../lobbyPatientSchedule/lobbyPatientSchedule";
 import { Patient } from "@/services/patient";
 
@@ -39,13 +44,35 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
   ]);
   const [patient, setPatient] = useState<Patient>();
   const [showModal, setShowModal] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   function closeModal() {
     setShowModal(false);
   }
 
+  async function handleRefresh() {
+    setIsLoading(true);
+    const response = "await getPatients();";
+    if (typeof response === "string") {
+      setMessage(response);
+      setShowMessage(true);
+      setIsLoading(false);
+      return;
+    }
+    setIsLoading(false);
+    setPatients(response);
+  }
+
   return (
     <>
+      <button
+        onClick={handleRefresh}
+        className="lobby-patient-registration-refresh-btn"
+      >
+        <ArrowsClockwise size={32} />
+      </button>
       <section className="lobby-patient-scheduling-container-1">
         <section className="lobby-patient-scheduling-container-3">
           <h1>Pacientes</h1>

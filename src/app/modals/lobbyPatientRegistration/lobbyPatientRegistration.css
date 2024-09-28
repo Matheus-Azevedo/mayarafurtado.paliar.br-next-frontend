@@ -74,7 +74,7 @@
 }
 
 .lobby-patient-registration-refresh-btn {
-  padding-left: 7px;
+  color: var(--green-light-paliar);
 }
 
 .lobby-patient-registration-container-3 table {
