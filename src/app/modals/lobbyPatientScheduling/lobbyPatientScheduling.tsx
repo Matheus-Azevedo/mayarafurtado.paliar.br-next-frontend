@@ -4,49 +4,37 @@ import "./lobbyPatientScheduling.css";
 import { useState } from "react";
 import { CheckCircle, Clock, Trash } from "@phosphor-icons/react";
 import LobbyPatientSchedule from "../lobbyPatientSchedule/lobbyPatientSchedule";
+import { Patient } from "@/services/patient";
 
 interface PatientRegistrationProps {
   search: string;
-}
-
-export interface Patient {
-  name: string;
-  tel: string;
-  email: string;
-  date: string;
-  cpf: string;
-  address: string;
-  district: string;
-  city: string;
-  state: string;
-  cep: string;
 }
 
 function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
   const [patients, setPatients] = useState([
     {
       name: "Fulano",
-      tel: "83991142701",
+      phone: "83991142701",
       email: "fulano@email.com",
-      date: "01/01/2021",
+      birthDate: "01/01/2021",
       cpf: "123.456.789-00",
       address: "Rua do Fulano",
       district: "Bairro do Fulano",
       city: "Cidade do Fulano",
       state: "Estado do Fulano",
-      cep: "12345-678",
+      zipCode: "12345-678",
     },
     {
       name: "Ciclano",
-      tel: "83991142702",
+      phone: "83991142702",
       email: "ciclano@email.com",
-      date: "02/02/2021",
+      birthDate: "02/02/2021",
       cpf: "123.456.789-01",
       address: "Rua do Ciclano",
       district: "Bairro do Ciclano",
       city: "Cidade do Ciclano",
       state: "Estado do Ciclano",
-      cep: "12345-679",
+      zipCode: "12345-679",
     },
   ]);
   const [patient, setPatient] = useState<Patient>();
@@ -76,7 +64,7 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
                 .filter((patient) => {
                   return (
                     patient.name.toLowerCase().includes(search.toLowerCase()) ||
-                    patient.tel.includes(search) ||
+                    patient.phone.includes(search) ||
                     patient.email.toLowerCase().includes(search.toLowerCase())
                   );
                 })
@@ -84,7 +72,7 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{patient.name}</td>
-                    <td>{patient.tel}</td>
+                    <td>{patient.phone}</td>
                     <td>{patient.email}</td>
                     <td>
                       <button>
@@ -120,7 +108,7 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{patient.name}</td>
-                  <td>{patient.tel}</td>
+                  <td>{patient.phone}</td>
                   <td>{patient.email}</td>
                   <td>
                     <button>
