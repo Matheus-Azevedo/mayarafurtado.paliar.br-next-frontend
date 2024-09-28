@@ -73,6 +73,10 @@
   overflow: auto;
 }
 
+.lobby-patient-registration-refresh-btn {
+  padding-left: 7px;
+}
+
 .lobby-patient-registration-container-3 table {
   width: 100%;
   font-size: 1.2rem;

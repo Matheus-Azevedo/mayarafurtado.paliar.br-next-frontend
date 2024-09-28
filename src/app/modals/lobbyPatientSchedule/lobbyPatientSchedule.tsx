@@ -1,19 +1,19 @@
-import { Patient } from "../lobbyPatientRegistration/lobbyPatientRegistration";
+import { Patient } from "../../../services/patient";
 import "./lobbyPatientSchedule.css";
 
-interface PatientDetailProps {
+interface PatientScheduleProps {
   closeModal: () => void;
   patient?: Patient;
 }
 
-function LobbyPatientSchedule({ closeModal, patient }: PatientDetailProps) {
+function LobbyPatientSchedule({ closeModal, patient }: PatientScheduleProps) {
   return (
-    <section className="lobby-patient-detail-modal">
-      <div className="lobby-patient-detail-container-1">
+    <section className="lobby-patient-schedule-modal">
+      <div className="lobby-patient-schedule-container-1">
         <h1>{patient?.name}</h1>
         <p>
           <strong>Telefone: </strong>
-          {patient?.tel}
+          {patient?.phone}
         </p>
         <p>
           <strong>Email: </strong>

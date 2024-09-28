@@ -1,74 +1,125 @@
 "use client";
 
 import "./lobbyPatientRegistration.css";
-import { useState } from "react";
-import { Info, Trash } from "@phosphor-icons/react";
+import { use, useEffect, useState } from "react";
+import { ArrowsClockwise, Info, Trash } from "@phosphor-icons/react";
 import LobbyPatientDetail from "../lobbyPatientDetail/lobbyPatientDetail";
+import Message from "../message/message";
+import Loading from "../loading/loading";
+import {
+  createPatient,
+  deletePatient,
+  getPatients,
+  Patient,
+} from "@/services/patient";
 
 interface PatientRegistrationProps {
   search: string;
 }
 
-export interface Patient {
-  name: string;
-  tel: string;
-  email: string;
-  date: string;
-  cpf: string;
-  address: string;
-  district: string;
-  city: string;
-  state: string;
-  cep: string;
-}
-
 function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
-  const [patients, setPatients] = useState([
-    {
-      name: "Fulano",
-      tel: "83991142701",
-      email: "fulano@email.com",
-      date: "01/01/2021",
-      cpf: "123.456.789-00",
-      address: "Rua do Fulano",
-      district: "Bairro do Fulano",
-      city: "Cidade do Fulano",
-      state: "Estado do Fulano",
-      cep: "12345-678",
-    },
-    {
-      name: "Ciclano",
-      tel: "83991142702",
-      email: "ciclano@email.com",
-      date: "02/02/2021",
-      cpf: "123.456.789-01",
-      address: "Rua do Ciclano",
-      district: "Bairro do Ciclano",
-      city: "Cidade do Ciclano",
-      state: "Estado do Ciclano",
-      cep: "12345-679",
-    },
-  ]);
+  const [patients, setPatients] = useState<Patient[]>([]);
   const [patient, setPatient] = useState<Patient>();
   const [showModal, setShowModal] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchPatients() {
+      setIsLoading(true);
+      const response = await getPatients();
+      if (typeof response === "string") {
+        setIsLoading(false);
+        setMessage(response);
+        setShowMessage(true);
+        return;
+      }
+      setIsLoading(false);
+      setPatients(response);
+    }
+    fetchPatients();
+  }, []);
+
+  async function handleRefresh() {
+    setIsLoading(true);
+    const response = await getPatients();
+    if (typeof response === "string") {
+      setMessage(response);
+      setShowMessage(true);
+      return;
+    }
+    setIsLoading(false);
+    setPatients(response);
+  }
 
   function closeModal() {
     setShowModal(false);
+  }
+
+  async function handleSubmit(event: any) {
+    event.preventDefault();
+    setIsLoading(true);
+    const form = event.target;
+    const newPatient: Patient = {
+      name: form.name.value,
+      phone: form.tel.value,
+      email: form.email.value,
+      birthDate: form.date.value,
+      cpf: form.cpf.value,
+      address: form.address.value,
+      district: form.district.value,
+      city: form.city.value,
+      state: form.state.value,
+      zipCode: form.cep.value,
+    };
+    const message = await createPatient(newPatient);
+    setIsLoading(false);
+    setMessage(message);
+    setShowMessage(true);
+    form.reset();
+  }
+
+  async function handleDelete(id: string): Promise<void> {
+    setIsLoading(true);
+    const message = await deletePatient(id);
+    setIsLoading(false);
+    setMessage(message);
+    setShowMessage(true);
   }
 
   return (
     <>
       <section className="lobby-patient-registration-container-1">
         <section className="lobby-patient-registration-container-2">
-          <form>
-            <input type="text" id="name" name="name" placeholder="Nome" />
-            <input type="tel" id="tel" name="tel" placeholder="Telefone" />
-            <input type="email" id="email" name="email" placeholder="Email" />
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Nome"
+              required
+            />
+            <input
+              type="tel"
+              id="tel"
+              name="tel"
+              placeholder="Telefone"
+              required
+            />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
             <input
               type="date"
               id="date"
               name="date"
               placeholder="Data de Nascimento"
+              required
             />
             <input type="text" id="cpf" name="cpf" placeholder="CPF" />
             <input
@@ -76,64 +127,89 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
               id="address"
               name="address"
               placeholder="Endereço"
+              required
             />
             <input
               type="text"
               id="district"
               name="district"
               placeholder="Bairro"
+              required
             />
-            <input type="text" id="city" name="city" placeholder="Cidade" />
-            <input type="text" id="state" name="state" placeholder="Estado" />
-            <input type="text" id="cep" name="cep" placeholder="CEP" />
+            <input
+              type="text"
+              id="city"
+              name="city"
+              placeholder="Cidade"
+              required
+            />
+            <input
+              type="text"
+              id="state"
+              name="state"
+              placeholder="Estado"
+              required
+            />
+            <input type="text" id="cep" name="cep" placeholder="CEP" required />
             <button type="submit">Cadastrar</button>
           </form>
         </section>
         <section className="lobby-patient-registration-container-3">
+          <button
+            onClick={handleRefresh}
+            className="lobby-patient-registration-refresh-btn"
+          >
+            <ArrowsClockwise size={32} />
+          </button>
           <table>
             <thead>
               <tr>
                 <th>#</th>
                 <th>Nome</th>
                 <th>Telefone</th>
-                <th>Email</th>
-                <th>Detalhes</th>
+                <th>Editar</th>
                 <th>Remover</th>
               </tr>
             </thead>
             <tbody>
-              {patients
-                .filter((patient) => {
-                  return (
-                    patient.name.toLowerCase().includes(search.toLowerCase()) ||
-                    patient.tel.includes(search) ||
-                    patient.email.toLowerCase().includes(search.toLowerCase())
-                  );
-                })
-                .map((patient, index) => (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{patient.name}</td>
-                    <td>{patient.tel}</td>
-                    <td>{patient.email}</td>
-                    <td>
-                      <button>
-                        <Info
-                          size={32}
+              {patients &&
+                patients
+                  .filter((patient) => {
+                    return (
+                      patient.name
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                      patient.phone.includes(search) ||
+                      patient.email.toLowerCase().includes(search.toLowerCase())
+                    );
+                  })
+                  .map((patient, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{patient.name}</td>
+                      <td>{patient.phone}</td>
+                      <td>
+                        <button>
+                          <Info
+                            size={32}
+                            onClick={() => {
+                              setPatient(patient);
+                              setShowModal(true);
+                            }}
+                          />
+                        </button>
+                      </td>
+                      <td>
+                        <button
                           onClick={() => {
-                            setPatient(patient);
-                            setShowModal(true);
+                            patient.id && handleDelete(patient.id);
                           }}
-                        />
-                      </button>
-                    </td>
-                    <td>
-                      <button>
-                        <Trash size={32} />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                        >
+                          <Trash size={32} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
             </tbody>
           </table>
         </section>
@@ -141,6 +217,10 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
       {showModal && (
         <LobbyPatientDetail closeModal={closeModal} patient={patient} />
       )}
+      {showMessage && (
+        <Message closeModal={() => setShowMessage(false)} message={message} />
+      )}
+      {isLoading && <Loading />}
     </>
   );
 }

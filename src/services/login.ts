@@ -16,6 +16,8 @@ export async function sendLoginRequest(
         password,
       }
     );
+    const { token } = data;
+    sessionStorage.setItem("token", token);
     return data;
   } catch (error) {
     console.error(error);
