@@ -58,6 +58,14 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
     setShowModal(false);
   }
 
+  function handleChangePhone(event: any) {
+    const phone = event.target.value;
+    const phoneFormatted = phone
+      .replace(/\D/g, "")
+      .replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+    event.target.value = phoneFormatted;
+  }
+
   async function handleSubmit(event: any) {
     event.preventDefault();
     setIsLoading(true);
@@ -112,6 +120,7 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
               id="tel"
               name="tel"
               placeholder="Telefone"
+              onChange={handleChangePhone}
               required
             />
             <input
