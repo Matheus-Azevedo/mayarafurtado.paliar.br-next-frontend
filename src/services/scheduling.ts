@@ -1,0 +1,112 @@
+import axios from "axios";
+
+export interface CreateScheduling {
+  id?: string;
+  patientId: string;
+  scheduled: string;
+}
+
+export async function createScheduling({
+  patientId,
+  scheduled,
+}: CreateScheduling): Promise<string> {
+  try {
+    await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL_BASE}/scheduling/save`,
+      { patientId, scheduled },
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    );
+    return "Agendamento realizado com sucesso!";
+  } catch (error) {
+    console.error(error);
+    return "Erro ao realizar agendamento!";
+  }
+}
+
+export interface GetScheduling {
+  id: string;
+  scheduled: string;
+  attended: boolean;
+  patientId: string;
+  patientName: string;
+  patientPhone: string;
+  patientEmail: string;
+  scheduledFormatted: string;
+}
+
+export async function getScheduling(): Promise<GetScheduling[]> {
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL_BASE}/scheduling/findAll`,
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    );
+    const dataFormatted = data.map((scheduling: any) => {
+      const [year, month, day] = scheduling.scheduled; // Extraindo o ano, mês e dia
+
+      // Formatando a data como DD/MM/YYYY
+      const formattedDate = `${day < 10 ? "0" + day : day}/${
+        month < 10 ? "0" + month : month
+      }/${year}`;
+
+      return {
+        ...scheduling,
+        scheduledFormatted: formattedDate, // Adicionando a data formatada ao objeto
+      };
+    });
+    return dataFormatted;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+export async function deleteScheduling(id: string): Promise<string> {
+  try {
+    await axios.delete(
+      `${process.env.NEXT_PUBLIC_API_URL_BASE}/scheduling/delete/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    );
+    return "Agendamento deletado com sucesso!";
+  } catch (error) {
+    console.error(error);
+    return "Erro ao deletar agendamento!";
+  }
+}
+
+export interface UpdateScheduling {
+  scheduled: string;
+  attended: boolean;
+}
+
+export async function updateScheduling(
+  id: string,
+  updatingSchedule: UpdateScheduling
+): Promise<string> {
+  try {
+    await axios.put(
+      `${process.env.NEXT_PUBLIC_API_URL_BASE}/scheduling/path/${id}`,
+      updatingSchedule,
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    );
+    return "Agendamento atualizado com sucesso!";
+  } catch (error) {
+    console.error(error);
+    return "Erro ao atualizar agendamento!";
+  }
+}

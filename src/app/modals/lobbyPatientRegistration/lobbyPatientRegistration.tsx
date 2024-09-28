@@ -12,6 +12,7 @@ import {
   getPatients,
   Patient,
 } from "@/services/patient";
+import Confirm from "../confirm/confirm";
 
 interface PatientRegistrationProps {
   search: string;
@@ -24,6 +25,8 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
   const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [idToDelete, setIdToDelete] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchPatients() {
@@ -89,12 +92,30 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
     form.reset();
   }
 
-  async function handleDelete(id: string): Promise<void> {
-    setIsLoading(true);
-    const message = await deletePatient(id);
+  function openConfirmModal(id: string) {
+    setIdToDelete(id); // Armazena o ID do depoimento a ser excluído
+    setShowConfirmModal(true);
+  }
+
+  function closeConfirmModal() {
+    setShowConfirmModal(false);
+    setIdToDelete(null); // Limpa o ID ao fechar o modal
+  }
+
+  async function handleDelete(): Promise<void> {
+    if (idToDelete) {
+      setIsLoading(true);
+      const message = await deletePatient(idToDelete);
+      if (typeof message === "string") {
+        setIsLoading(false);
+        setMessage(message);
+        setShowMessage(true);
+        closeConfirmModal();
+        return;
+      }
+    }
     setIsLoading(false);
-    setMessage(message);
-    setShowMessage(true);
+    closeConfirmModal();
   }
 
   return (
@@ -212,7 +233,7 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
                       <td>
                         <button
                           onClick={() => {
-                            patient.id && handleDelete(patient.id);
+                            patient.id && openConfirmModal(patient.id);
                           }}
                         >
                           <Trash size={32} />
@@ -231,6 +252,13 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
         <Message closeModal={() => setShowMessage(false)} message={message} />
       )}
       {isLoading && <Loading />}
+      {showConfirmModal && (
+        <Confirm
+          closeModal={closeConfirmModal}
+          confirmAction={handleDelete} // Passa a função de exclusão para o modal
+          message="Tem certeza de que deseja excluir este cadastro?"
+        />
+      )}
     </>
   );
 }

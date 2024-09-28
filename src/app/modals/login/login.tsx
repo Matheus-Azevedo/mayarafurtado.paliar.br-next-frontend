@@ -43,6 +43,7 @@ function Login({ closeLoginModal }: LoginProps) {
 
   function closeLobbyModal() {
     setOpenLobbyModal(false);
+    sessionStorage.removeItem("token");
   }
 
   return (

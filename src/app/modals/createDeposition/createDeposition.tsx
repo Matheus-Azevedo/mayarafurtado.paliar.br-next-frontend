@@ -3,6 +3,7 @@ import "./createDeposition.css";
 import Loading from "../loading/loading";
 import { createDeposition } from "@/services/depositions";
 import ReCAPTCHA from "react-google-recaptcha";
+import Message from "../message/message";
 
 interface CreateDepositionProps {
   closeModal: () => void;
@@ -15,6 +16,8 @@ function CreateDeposition({ closeModal }: CreateDepositionProps) {
   const [file, setFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isHuman, setIsHuman] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState("");
 
   function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.files) {
@@ -54,24 +57,18 @@ function CreateDeposition({ closeModal }: CreateDepositionProps) {
     event.preventDefault();
     const deposition = {
       name,
-      phone,
-      content,
-      file,
+      telephone: phone,
+      testimony: content,
     };
-    if (deposition.name && deposition.phone && deposition.content) {
+    if (deposition.name && deposition.telephone && deposition.testimony) {
       setIsLoading(true);
-      const status = await createDeposition(deposition);
-      if (status === 201) {
-        alert("Depoimento enviado com sucesso.");
+      const message = await createDeposition(deposition);
+      if (typeof message === "string") {
+        setMessage(message);
+        setShowMessage(true);
         setIsLoading(false);
-        closeModal();
-      } else {
-        alert("Erro ao enviar depoimento.");
-        setIsLoading(false);
+        return;
       }
-    } else {
-      alert("Preencha todos os campos para enviar o depoimento.");
-      setIsLoading(false);
     }
   }
 
@@ -141,6 +138,9 @@ function CreateDeposition({ closeModal }: CreateDepositionProps) {
         </section>
       </dialog>
       {isLoading && <Loading />}
+      {showMessage && (
+        <Message closeModal={() => setShowMessage(false)} message={message} />
+      )}
     </>
   );
 }

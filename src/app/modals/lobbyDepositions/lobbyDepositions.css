@@ -31,3 +31,14 @@
   padding: 10px;
   border-bottom: 1px solid var(--green-light-paliar);
 }
+
+.lobby-deposition-refresh-btn {
+  color: var(--green-light-paliar);
+  padding-left: 25px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.lobby-deposition-refresh-btn:hover {
+  color: var(--brown-paliar);
+}

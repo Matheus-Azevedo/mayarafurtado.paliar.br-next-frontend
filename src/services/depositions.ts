@@ -15,23 +15,21 @@ export async function deleteDeposition(
 
 export interface Deposition {
   name: string;
-  phone: string;
-  content: string;
-  file: any;
+  telephone: string;
+  testimony: string;
 }
 
 export async function createDeposition(
   deposition: Deposition
-): Promise<number | undefined> {
+): Promise<string> {
   try {
-    const { status } = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL_BASE}/depositions`,
-      {
-        ...deposition,
-      }
+    await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL_BASE}/testimonials/save`,
+      deposition
     );
-    return status;
+    return "Depoimento enviado com sucesso!";
   } catch (error) {
     console.error(error);
+    return "Erro ao enviar depoimento.";
   }
 }

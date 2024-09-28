@@ -67,3 +67,7 @@
   color: var(--green-light-paliar);
   padding: 10px;
 }
+
+.lobby-reactivation-control-refresh-btn:hover {
+  color: var(--brown-paliar);
+}

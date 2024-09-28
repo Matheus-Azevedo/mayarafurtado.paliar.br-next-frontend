@@ -77,6 +77,10 @@
   color: var(--green-light-paliar);
 }
 
+.lobby-patient-registration-refresh-btn:hover {
+  color: var(--brown-paliar);
+}
+
 .lobby-patient-registration-container-3 table {
   width: 100%;
   font-size: 1.2rem;

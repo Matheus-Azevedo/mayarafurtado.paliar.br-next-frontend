@@ -1,0 +1,47 @@
+.confirm-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.confirm-container section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--green-light-paliar);
+  border-radius: 30px;
+  width: 50%;
+  height: 50%;
+  gap: 5rem;
+}
+
+.confirm-container h1 {
+  color: var(--green-paliar);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.confirm-container button {
+  padding: 0.5rem 1rem;
+  background-color: var(--green-paliar);
+  color: var(--green-light-paliar);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.confirm-buttons {
+  display: flex;
+  gap: 1rem;
+}

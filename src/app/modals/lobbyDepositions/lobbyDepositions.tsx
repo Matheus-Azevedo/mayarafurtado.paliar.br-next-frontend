@@ -1,78 +1,101 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./lobbyDepositions.css";
-import Image from "next/image";
-import { ChatCircleText, Trash } from "@phosphor-icons/react";
+import { ArrowsClockwise, ChatCircleText, Trash } from "@phosphor-icons/react";
 import DepositionContent from "../depositionContent/depositionContent";
 import { deleteDeposition } from "@/services/depositions";
+import { GetTestimonial, getTestimonials } from "@/services/testimonials";
+import Loading from "../loading/loading";
+import Message from "../message/message";
+import Confirm from "../confirm/confirm"; // Importe o modal de confirmação
 
 interface DepositionContentProps {
   search: string;
 }
 
-export interface Deposition {
-  id?: string;
-  photo: string;
-  name: string;
-  tel: string;
-  content: string;
-}
-
 function LobbyDepositions({ search }: DepositionContentProps) {
-  const [depositions, setDepositions] = useState<Deposition[]>([
-    {
-      photo: "/Exemplo.jpg",
-      name: "Fulano",
-      tel: "(83) 9 1234-5678",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    },
-    {
-      photo: "/Exemplo.jpg",
-      name: "Cicrano",
-      tel: "(83) 9 1234-5678",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    },
-    {
-      photo: "/Exemplo.jpg",
-      name: "Beltrano",
-      tel: "(83) 9 1234-5678",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    },
-  ]);
-  const [deposition, setDeposition] = useState<Deposition>();
+  const [depositions, setDepositions] = useState<GetTestimonial[]>([]);
+  const [deposition, setDeposition] = useState<GetTestimonial>();
   const [openDepositionContentModal, setOpenDepositionContentModal] =
     useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [idToDelete, setIdToDelete] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchPatients() {
+      setIsLoading(true);
+      const response = await getTestimonials();
+      if (typeof response === "string") {
+        setIsLoading(false);
+        setMessage(response);
+        setShowMessage(true);
+        return;
+      }
+      setIsLoading(false);
+      setDepositions(response);
+    }
+    fetchPatients();
+  }, []);
+
+  async function handleRefresh() {
+    setIsLoading(true);
+    const response = await getTestimonials();
+    if (typeof response === "string") {
+      setMessage(response);
+      setShowMessage(true);
+      setIsLoading(false);
+      return;
+    }
+    setIsLoading(false);
+    setDepositions(response);
+  }
 
   function closeDepositionContentModal() {
     setOpenDepositionContentModal(false);
   }
 
-  async function hanndleDelete(id: string) {
-    const result = confirm("Você tem certeza deseja apagar?");
-    if (result) {
-      const status = await deleteDeposition(id);
-      if (status === 200) {
-        alert("Depoimento apagado com sucesso.");
-        setDepositions(
-          depositions.filter((deposition) => deposition.id !== id)
-        );
-      } else {
-        alert("Não foi possível apagar o depoimento.");
+  const openConfirmModal = (id: string) => {
+    setIdToDelete(id); // Armazena o ID do depoimento a ser excluído
+    setShowConfirmModal(true);
+  };
+
+  const closeConfirmModal = () => {
+    setShowConfirmModal(false);
+    setIdToDelete(null); // Limpa o ID ao fechar o modal
+  };
+
+  async function handleDelete() {
+    if (idToDelete) {
+      setIsLoading(true);
+      const response = await deleteDeposition(idToDelete);
+      if (typeof response === "string") {
+        setIsLoading(false);
+        setMessage(response);
+        setShowMessage(true);
+        closeConfirmModal();
+        return;
       }
     }
+    setIsLoading(false);
+    closeConfirmModal(); // Fecha o modal após a ação
   }
 
   return (
     <>
       <section className="lobby-deposition-container">
+        <button
+          onClick={handleRefresh}
+          className="lobby-deposition-refresh-btn"
+        >
+          <ArrowsClockwise size={32} />
+        </button>
         <table className="lobby-deposition-table">
           <thead className="lobby-deposition-header">
             <tr>
               <th>#</th>
-              <th>Foto</th>
               <th>Nome</th>
               <th>TEL</th>
               <th>Depoimento</th>
@@ -86,21 +109,13 @@ function LobbyDepositions({ search }: DepositionContentProps) {
                   deposition.name
                     .toLowerCase()
                     .includes(search.toLowerCase()) ||
-                  deposition.tel.includes(search)
+                  deposition.telephone.includes(search)
               )
               .map((deposition, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td className="lobby-deposition-content-image">
-                    <Image
-                      src={deposition.photo}
-                      alt="Foto do depoente"
-                      width={70}
-                      height={70}
-                    />
-                  </td>
                   <td>{deposition.name}</td>
-                  <td>{deposition.tel}</td>
+                  <td>{deposition.telephone}</td>
                   <td>
                     <button
                       onClick={() => {
@@ -114,8 +129,8 @@ function LobbyDepositions({ search }: DepositionContentProps) {
                   <td>
                     <button
                       onClick={() =>
-                        deposition.id && hanndleDelete(deposition.id)
-                      }
+                        deposition.id && openConfirmModal(deposition.id)
+                      } // Abre o modal de confirmação
                     >
                       <Trash size={32} />
                     </button>
@@ -129,6 +144,17 @@ function LobbyDepositions({ search }: DepositionContentProps) {
         <DepositionContent
           closeModal={closeDepositionContentModal}
           deposition={deposition}
+        />
+      )}
+      {showMessage && (
+        <Message closeModal={() => setShowMessage(false)} message={message} />
+      )}
+      {isLoading && <Loading />}
+      {showConfirmModal && (
+        <Confirm
+          closeModal={closeConfirmModal}
+          confirmAction={handleDelete} // Passa a função de exclusão para o modal
+          message="Tem certeza de que deseja excluir este depoimento?"
         />
       )}
     </>
