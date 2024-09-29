@@ -191,13 +191,14 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
         </section>
         <section className="lobby-patient-scheduling-container-4">
           <div>
-            <h1>Agendamentos à confirmar</h1>
+            <h1>Serviços à confirmar</h1>
             <table>
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Nome</th>
                   <th>Telefone</th>
+                  <th>Data</th>
                   <th>Confirmar</th>
                   <th>Remover</th>
                 </tr>
@@ -211,6 +212,7 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
                         <td>{index + 1}</td>
                         <td>{schedule.patientName}</td>
                         <td>{schedule.patientPhone}</td>
+                        <td>{schedule.scheduledFormatted}</td>
                         <td>
                           <button
                             onClick={() => {
@@ -236,7 +238,7 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
             </table>
           </div>
           <div>
-            <h1>Agendamentos confirmados</h1>
+            <h1>Serviços confirmados</h1>
             <table>
               <thead>
                 <tr>

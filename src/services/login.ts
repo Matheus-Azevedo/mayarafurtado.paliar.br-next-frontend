@@ -1,13 +1,10 @@
 import axios from "axios";
-
-interface LoginResponse {
-  token: string;
-}
+import { jwtDecode, JwtPayload } from "jwt-decode";
 
 export async function sendLoginRequest(
   email: string,
   password: string
-): Promise<LoginResponse | undefined> {
+): Promise<JwtPayload | string> {
   try {
     const { data } = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL_BASE}/auth/login`,
@@ -18,8 +15,16 @@ export async function sendLoginRequest(
     );
     const { token } = data;
     sessionStorage.setItem("token", token);
-    return data;
+    const decoded = jwtDecode(token);
+    return decoded;
   } catch (error) {
     console.error(error);
+    if (axios.isAxiosError(error)) {
+      console.error(error.response?.data);
+      return error.response?.data.details;
+    } else {
+      console.error(error);
+      return "Erro inesperado ao fazer login!";
+    }
   }
 }

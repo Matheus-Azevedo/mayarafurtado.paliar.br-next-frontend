@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import "./lobbyDepositions.css";
 import { ArrowsClockwise, ChatCircleText, Trash } from "@phosphor-icons/react";
 import DepositionContent from "../depositionContent/depositionContent";
-import { deleteDeposition } from "@/services/depositions";
-import { GetTestimonial, getTestimonials } from "@/services/testimonials";
+import {
+  deleteTestimonials,
+  GetTestimonial,
+  getTestimonials,
+} from "@/services/testimonials";
 import Loading from "../loading/loading";
 import Message from "../message/message";
 import Confirm from "../confirm/confirm"; // Importe o modal de confirmação
@@ -70,7 +73,7 @@ function LobbyDepositions({ search }: DepositionContentProps) {
   async function handleDelete() {
     if (idToDelete) {
       setIsLoading(true);
-      const response = await deleteDeposition(idToDelete);
+      const response = await deleteTestimonials(idToDelete);
       if (typeof response === "string") {
         setIsLoading(false);
         setMessage(response);

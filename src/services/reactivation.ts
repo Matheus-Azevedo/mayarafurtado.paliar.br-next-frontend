@@ -1,4 +1,3 @@
-import { Patient } from "@/services/patient";
 import axios from "axios";
 
 export interface Reactivation {
@@ -12,7 +11,7 @@ export interface Reactivation {
   patientPhoneFormatted?: string;
 }
 
-export async function getReactivation(): Promise<Reactivation[]> {
+export async function getReactivation(): Promise<Reactivation[] | string> {
   try {
     const { data }: { data: Reactivation[] } = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL_BASE}/reactivations/findAll`,
@@ -38,6 +37,12 @@ export async function getReactivation(): Promise<Reactivation[]> {
     return dataFormatted;
   } catch (error) {
     console.error(error);
-    return [];
+    if (axios.isAxiosError(error)) {
+      console.error(error.response?.data);
+      return error.response?.data.details;
+    } else {
+      console.error(error);
+      return "Erro inesperado ao buscar reativações!";
+    }
   }
 }

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./createDeposition.css";
 import Loading from "../loading/loading";
-import { createDeposition } from "@/services/depositions";
 import ReCAPTCHA from "react-google-recaptcha";
 import Message from "../message/message";
+import { createTestimonials } from "@/services/testimonials";
 
 interface CreateDepositionProps {
   closeModal: () => void;
@@ -56,13 +56,14 @@ function CreateDeposition({ closeModal }: CreateDepositionProps) {
   async function handleSubmit(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     const deposition = {
+      // file,
       name,
       telephone: phone,
       testimony: content,
     };
     if (deposition.name && deposition.telephone && deposition.testimony) {
       setIsLoading(true);
-      const message = await createDeposition(deposition);
+      const message = await createTestimonials(deposition);
       if (typeof message === "string") {
         setMessage(message);
         setShowMessage(true);

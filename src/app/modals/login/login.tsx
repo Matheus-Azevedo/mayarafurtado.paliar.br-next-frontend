@@ -6,7 +6,7 @@ import "./login.css";
 import { sendLoginRequest } from "@/services/login";
 import Lobby from "../lobby/lobby";
 import Loading from "../loading/loading";
-import { jwtDecode } from "jwt-decode";
+import Message from "../message/message";
 
 interface LoginProps {
   closeLoginModal: () => void;
@@ -17,6 +17,8 @@ function Login({ closeLoginModal }: LoginProps) {
   const [password, setPassword] = useState("");
   const [openLobbyModal, setOpenLobbyModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState("");
 
   function handleChangeEmail(event: React.ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
@@ -28,17 +30,19 @@ function Login({ closeLoginModal }: LoginProps) {
 
   async function handleLogin() {
     setIsLoading(true);
-    const data = await sendLoginRequest(email, password);
-    if (data) {
-      const decoded = jwtDecode(data.token);
-      if (decoded.iss === `${process.env.NEXT_PUBLIC_ISSUER}`) {
-        setIsLoading(false);
-        setEmail("");
-        setPassword("");
-        setOpenLobbyModal(true);
-      }
+    const response = await sendLoginRequest(email, password);
+    if (typeof response === "string") {
+      setMessage(response);
+      setShowMessage(true);
+      setIsLoading(false);
+      return;
     }
-    setIsLoading(false);
+    if (response.iss && response.iss === `${process.env.NEXT_PUBLIC_ISSUER}`) {
+      setIsLoading(false);
+      setEmail("");
+      setPassword("");
+      setOpenLobbyModal(true);
+    }
   }
 
   function closeLobbyModal() {
@@ -75,6 +79,9 @@ function Login({ closeLoginModal }: LoginProps) {
       </dialog>
       {openLobbyModal && <Lobby closeLobbyModal={closeLobbyModal} />}
       {isLoading && <Loading />}
+      {showMessage && (
+        <Message closeModal={() => setShowMessage(false)} message={message} />
+      )}
     </>
   );
 }

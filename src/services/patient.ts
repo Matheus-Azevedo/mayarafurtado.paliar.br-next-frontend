@@ -27,7 +27,14 @@ export async function createPatient(newPatient: Patient): Promise<string> {
     );
     return "Paciente cadastrado com sucesso!";
   } catch (error) {
-    return "Erro ao cadastrar paciente!";
+    console.error(error);
+    if (axios.isAxiosError(error)) {
+      console.error(error.response?.data);
+      return error.response?.data.details;
+    } else {
+      console.error(error);
+      return "Erro inesperado ao cadastrar paciente!";
+    }
   }
 }
 
@@ -47,7 +54,13 @@ export async function getPatients(): Promise<Patient[] | string> {
     return data;
   } catch (error) {
     console.error(error);
-    return "Erro ao buscar pacientes!";
+    if (axios.isAxiosError(error)) {
+      console.error(error.response?.data);
+      return error.response?.data.details;
+    } else {
+      console.error(error);
+      return "Erro inesperado ao buscar pacientes!";
+    }
   }
 }
 
@@ -64,7 +77,13 @@ export async function deletePatient(id: string): Promise<string> {
     return "Paciente deletado com sucesso!";
   } catch (error) {
     console.error(error);
-    return "Erro ao deletar paciente!";
+    if (axios.isAxiosError(error)) {
+      console.error(error.response?.data);
+      return error.response?.data.details;
+    } else {
+      console.error(error);
+      return "Erro inesperado ao deletar paciente!";
+    }
   }
 }
 
@@ -85,6 +104,12 @@ export async function updatePatient(
     return "Paciente atualizado com sucesso!";
   } catch (error) {
     console.error(error);
-    return "Erro ao atualizar paciente!";
+    if (axios.isAxiosError(error)) {
+      console.error(error.response?.data);
+      return error.response?.data.details;
+    } else {
+      console.error(error);
+      return "Erro inesperado ao atualizar paciente!";
+    }
   }
 }

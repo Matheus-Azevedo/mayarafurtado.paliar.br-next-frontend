@@ -33,7 +33,7 @@ function Lobby({ closeLobbyModal }: LobbyProps) {
               className="lobby-button"
               onClick={() => setShowComponent(1)}
             >
-              Agendamento
+              Agendamento de Avaliação
             </button>
             <button
               className="lobby-button"

@@ -23,7 +23,13 @@ export async function createScheduling({
     return "Agendamento realizado com sucesso!";
   } catch (error) {
     console.error(error);
-    return "Erro ao realizar agendamento!";
+    if (axios.isAxiosError(error)) {
+      console.error(error.response?.data);
+      return error.response?.data.details;
+    } else {
+      console.error(error);
+      return "Erro inesperado ao realizar agendamento!";
+    }
   }
 }
 
@@ -38,7 +44,7 @@ export interface GetScheduling {
   scheduledFormatted: string;
 }
 
-export async function getScheduling(): Promise<GetScheduling[]> {
+export async function getScheduling(): Promise<GetScheduling[] | string> {
   try {
     const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL_BASE}/scheduling/findAll`,
@@ -64,7 +70,13 @@ export async function getScheduling(): Promise<GetScheduling[]> {
     return dataFormatted;
   } catch (error) {
     console.error(error);
-    return [];
+    if (axios.isAxiosError(error)) {
+      console.error(error.response?.data);
+      return error.response?.data.details;
+    } else {
+      console.error(error);
+      return "Erro inesperado ao buscar agendamentos!";
+    }
   }
 }
 
@@ -81,7 +93,13 @@ export async function deleteScheduling(id: string): Promise<string> {
     return "Agendamento deletado com sucesso!";
   } catch (error) {
     console.error(error);
-    return "Erro ao deletar agendamento!";
+    if (axios.isAxiosError(error)) {
+      console.error(error.response?.data);
+      return error.response?.data.details;
+    } else {
+      console.error(error);
+      return "Erro inesperado ao deletar agendamento!";
+    }
   }
 }
 
@@ -107,6 +125,12 @@ export async function updateScheduling(
     return "Agendamento atualizado com sucesso!";
   } catch (error) {
     console.error(error);
-    return "Erro ao atualizar agendamento!";
+    if (axios.isAxiosError(error)) {
+      console.error(error.response?.data);
+      return error.response?.data.details;
+    } else {
+      console.error(error);
+      return "Erro inesperado ao atualizar agendamento!";
+    }
   }
 }
