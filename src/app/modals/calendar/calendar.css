@@ -1,0 +1,38 @@
+.calendar-container {
+  border: none;
+  border-radius: 30px;
+  padding: 20px;
+  width: 35%;
+  height: 40%;
+  background-color: var(--green-light-paliar);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajustado para um sombreamento mais visível */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* Garante que o modal esteja acima de outros elementos */
+  outline: none; /* Remove o contorno padrão do elemento dialog */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--green-paliar);
+}
+
+.calendar-container h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.calendar-close-btn {
+  background-color: var(--green-paliar);
+  color: var(--green-light-paliar);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  height: 40px;
+}

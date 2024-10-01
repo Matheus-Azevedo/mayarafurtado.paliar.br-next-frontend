@@ -34,7 +34,7 @@
 }
 
 .lobby-patient-schedule-container-1 p {
-  color: var(--brown-paliar);
+  color: var(--green-paliar);
   font-size: 1.5rem;
   text-align: justify;
   display: flex;
@@ -63,4 +63,32 @@
 
 .lobby-patient-schedule-container-1 button:hover {
   background-color: var(--brown-paliar);
+}
+
+.lobby-patient-schedule-checkboxes {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--green-paliar);
+}
+
+.lobby-patient-schedule-checkboxes input {
+  width: 1.5rem;
+  height: 1.5rem;
+  accent-color: var(--green-paliar);
+}
+
+.lobby-patient-schedule-date {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.lobby-patient-schedule-date button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 3rem;
 }

@@ -4,16 +4,16 @@ export interface CreateScheduling {
   id?: string;
   patientId: string;
   scheduled: string;
+  role?: string;
 }
 
-export async function createScheduling({
-  patientId,
-  scheduled,
-}: CreateScheduling): Promise<string> {
+export async function createScheduling(
+  scheduling: CreateScheduling
+): Promise<string> {
   try {
     await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL_BASE}/scheduling/save`,
-      { patientId, scheduled },
+      scheduling,
       {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -42,6 +42,8 @@ export interface GetScheduling {
   patientPhone: string;
   patientEmail: string;
   scheduledFormatted: string;
+  role: string;
+  roleTranslated: string;
 }
 
 export async function getScheduling(): Promise<GetScheduling[] | string> {
@@ -62,8 +64,12 @@ export async function getScheduling(): Promise<GetScheduling[] | string> {
         month < 10 ? "0" + month : month
       }/${year}`;
 
+      const roleTranslated =
+        scheduling.role === "evaluation" ? "Avaliação" : "Sessão";
+
       return {
         ...scheduling,
+        roleTranslated, // Adicionando a role formatada ao objeto
         scheduledFormatted: formattedDate, // Adicionando a data formatada ao objeto
       };
     });
@@ -131,6 +137,35 @@ export async function updateScheduling(
     } else {
       console.error(error);
       return "Erro inesperado ao atualizar agendamento!";
+    }
+  }
+}
+
+export interface SchedulingCalendar {
+  [date: string]: string;
+}
+
+export async function getSchedulingCalendar(): Promise<
+  SchedulingCalendar | string
+> {
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL_BASE}/scheduling/available-times/month`,
+      {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    console.error(error);
+    if (axios.isAxiosError(error)) {
+      console.error(error.response?.data);
+      return error.response?.data.details;
+    } else {
+      console.error(error);
+      return "Erro inesperado ao buscar agendamentos!";
     }
   }
 }

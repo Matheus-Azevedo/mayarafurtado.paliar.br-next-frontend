@@ -30,6 +30,7 @@
   color: var(--green-paliar);
   font-size: 2rem;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .message-container button {

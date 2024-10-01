@@ -86,6 +86,7 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
     setPatients(response);
 
     const schedulingResponse = await getScheduling();
+    console.log(schedulingResponse);
     if (typeof schedulingResponse === "string") {
       setMessage(schedulingResponse);
       setShowMessage(true);
@@ -153,6 +154,7 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
                 <th>#</th>
                 <th>Nome</th>
                 <th>Telefone</th>
+                <th>Email</th>
                 <th>Agendar</th>
               </tr>
             </thead>
@@ -173,6 +175,7 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
                       <td>{index + 1}</td>
                       <td>{patient.name}</td>
                       <td>{patient.phone}</td>
+                      <td>{patient.email}</td>
                       <td>
                         <button>
                           <Clock
@@ -198,9 +201,10 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
                   <th>#</th>
                   <th>Nome</th>
                   <th>Telefone</th>
+                  <th>Tipo</th>
                   <th>Data</th>
-                  <th>Confirmar</th>
-                  <th>Remover</th>
+                  <th>C</th>
+                  <th>R</th>
                 </tr>
               </thead>
               <tbody>
@@ -212,6 +216,7 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
                         <td>{index + 1}</td>
                         <td>{schedule.patientName}</td>
                         <td>{schedule.patientPhone}</td>
+                        <td>{schedule.roleTranslated}</td>
                         <td>{schedule.scheduledFormatted}</td>
                         <td>
                           <button
@@ -245,8 +250,8 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
                   <th>#</th>
                   <th>Nome</th>
                   <th>Telefone</th>
+                  <th>Tipo</th>
                   <th>Data</th>
-                  <th>Confirmados</th>
                 </tr>
               </thead>
               <tbody>
@@ -258,8 +263,8 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
                         <td>{index + 1}</td>
                         <td>{schedule.patientName}</td>
                         <td>{schedule.patientPhone}</td>
+                        <td>{schedule.roleTranslated}</td>
                         <td>{schedule.scheduledFormatted}</td>
-                        <td>OK</td>
                       </tr>
                     ))}
               </tbody>

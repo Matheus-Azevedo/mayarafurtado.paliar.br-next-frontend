@@ -61,12 +61,20 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
     setShowModal(false);
   }
 
-  function handleChangePhone(event: any) {
+  function handleChangePhone(event: React.ChangeEvent<HTMLInputElement>) {
     const phone = event.target.value;
     const phoneFormatted = phone
       .replace(/\D/g, "")
       .replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
     event.target.value = phoneFormatted;
+  }
+
+  function handleChangeCEP(event: React.ChangeEvent<HTMLInputElement>) {
+    const cep = event.target.value;
+    const cepFormatted = cep
+      .replace(/\D/g, "")
+      .replace(/(\d{5})(\d{3})/, "$1-$2");
+    event.target.value = cepFormatted;
   }
 
   async function handleSubmit(event: any) {
@@ -187,7 +195,14 @@ function LobbyPatientRegistration({ search }: PatientRegistrationProps) {
               placeholder="Estado"
               required
             />
-            <input type="text" id="cep" name="cep" placeholder="CEP" required />
+            <input
+              type="text"
+              id="cep"
+              name="cep"
+              placeholder="CEP"
+              onChange={handleChangeCEP}
+              required
+            />
             <button type="submit">Cadastrar</button>
           </form>
         </section>
