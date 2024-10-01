@@ -283,7 +283,7 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
         <Confirm
           closeModal={closeConfirmModal}
           confirmAction={handleDelete} // Passa a função de exclusão para o modal
-          message="Tem certeza de que deseja excluir este cadastro?"
+          message="Tem certeza de que deseja excluir este agendamento?"
         />
       )}
     </>
