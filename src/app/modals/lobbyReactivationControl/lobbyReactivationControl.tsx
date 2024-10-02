@@ -1,11 +1,19 @@
 "use client";
-import { ArrowsClockwise, WhatsappLogo } from "@phosphor-icons/react";
+import {
+  ArrowsClockwise,
+  ClockClockwise,
+  WhatsappLogo,
+} from "@phosphor-icons/react";
 import "./lobbyReactivationControl.css";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Loading from "../loading/loading";
 import Message from "../message/message";
-import { getReactivation, Reactivation } from "@/services/reactivation";
+import {
+  getReactivation,
+  Reactivation,
+  updateReactivation,
+} from "@/services/reactivation";
 
 interface ReactivationControlProps {
   search: string;
@@ -46,6 +54,20 @@ function LobbyReactivationControl({ search }: ReactivationControlProps) {
     setReactivation(response);
   }
 
+  async function handleUpdate(id: string) {
+    setIsLoading(true);
+    const currentDate = new Date();
+    console.log(currentDate);
+    const response = await updateReactivation(id, currentDate);
+    if (typeof response === "string") {
+      setMessage(response);
+      setShowMessage(true);
+      setIsLoading(false);
+      return;
+    }
+    setIsLoading(false);
+  }
+
   return (
     <>
       <section className="lobby-reactivation-control-container-1">
@@ -65,6 +87,7 @@ function LobbyReactivationControl({ search }: ReactivationControlProps) {
                 <th>Classificação</th>
                 <th>Reativar em</th>
                 <th>Contato</th>
+                <th>Prorrogar</th>
               </tr>
             </thead>
             <tbody className="lobby-reactivation-control-content">
@@ -96,6 +119,15 @@ function LobbyReactivationControl({ search }: ReactivationControlProps) {
                             size={32}
                           />
                         </Link>
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => {
+                            reactivation.id && handleUpdate(reactivation.id);
+                          }}
+                        >
+                          <ClockClockwise size={32} />
+                        </button>
                       </td>
                     </tr>
                   ))}

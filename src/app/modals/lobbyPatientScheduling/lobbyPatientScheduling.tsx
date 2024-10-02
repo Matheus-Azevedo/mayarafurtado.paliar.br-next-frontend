@@ -34,7 +34,6 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState<string | null>(null);
-  const [scheduled, setScheduled] = useState<string>("");
 
   useEffect(() => {
     async function fetchData() {
@@ -86,10 +85,10 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
     setPatients(response);
 
     const schedulingResponse = await getScheduling();
-    console.log(schedulingResponse);
     if (typeof schedulingResponse === "string") {
       setMessage(schedulingResponse);
       setShowMessage(true);
+      setIsLoading(false);
       return;
     }
     setScheduling(schedulingResponse);
@@ -123,12 +122,13 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
     closeConfirmModal();
   }
 
-  async function handleConfirm(id: string): Promise<void> {
+  async function handleConfirm(id: string, scheduled: string) {
     setIsLoading(true);
-    const message = await updateScheduling(id, {
-      scheduled: scheduled,
+    const updatedSchedule = {
+      scheduled,
       attended: true,
-    });
+    };
+    const message = await updateScheduling(id, updatedSchedule);
     if (typeof message === "string") {
       setIsLoading(false);
       setMessage(message);
@@ -221,8 +221,7 @@ function LobbyPatientScheduling({ search }: PatientRegistrationProps) {
                         <td>
                           <button
                             onClick={() => {
-                              setScheduled(schedule.scheduled);
-                              schedule.id && handleConfirm(schedule.id); // Chama a função de confirmação
+                              handleConfirm(schedule.id, schedule.scheduled);
                             }}
                           >
                             <CheckCircle size={32} />

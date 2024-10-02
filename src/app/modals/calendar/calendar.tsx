@@ -41,12 +41,14 @@ function CalendarCheck({ closeModal }: CalendarCheckProps) {
         <h1>Agendamentos disponíveis no mês:</h1>
         <ul className="calendar-list">
           {schedules &&
-            Object.entries(schedules).map(([date, schedule]) => (
-              <li key={date}>
-                <strong>{date}: </strong>
-                <span>{schedule}</span>
-              </li>
-            ))}
+            Object.entries(schedules)
+              .sort()
+              .map(([date, schedule]) => (
+                <li key={date} className="calendar-item">
+                  <strong>{date}</strong>
+                  <span>{schedule}</span>
+                </li>
+              ))}
         </ul>
         <button onClick={closeModal} className="calendar-close-btn">
           Fechar

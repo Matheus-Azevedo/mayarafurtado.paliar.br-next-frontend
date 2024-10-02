@@ -57,12 +57,12 @@ export async function getScheduling(): Promise<GetScheduling[] | string> {
       }
     );
     const dataFormatted = data.map((scheduling: any) => {
-      const [year, month, day] = scheduling.scheduled; // Extraindo o ano, mês e dia
+      const [year, month, day, hour] = scheduling.scheduled; // Extraindo o ano, mês e dia
 
       // Formatando a data como DD/MM/YYYY
       const formattedDate = `${day < 10 ? "0" + day : day}/${
         month < 10 ? "0" + month : month
-      }/${year}`;
+      }/${year} ${hour}h`;
 
       const roleTranslated =
         scheduling.role === "evaluation" ? "Avaliação" : "Sessão";
