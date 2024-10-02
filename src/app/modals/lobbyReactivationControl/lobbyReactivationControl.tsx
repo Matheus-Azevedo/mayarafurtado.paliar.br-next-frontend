@@ -57,7 +57,6 @@ function LobbyReactivationControl({ search }: ReactivationControlProps) {
   async function handleUpdate(id: string) {
     setIsLoading(true);
     const currentDate = new Date();
-    console.log(currentDate);
     const response = await updateReactivation(id, currentDate);
     if (typeof response === "string") {
       setMessage(response);
